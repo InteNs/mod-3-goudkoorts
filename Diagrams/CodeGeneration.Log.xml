@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///H:/APPS/VISUAL STUDIO 2013/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="High" Text="Code generation or text transformation started." />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="Name = ClassTemplate" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="ProjectPath = ..\DiagramsLib\DiagramsLib.csproj" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="TemplateFilePath = H:\APPS\VISUAL STUDIO 2013\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Diagnostic" Text="ResolvedTemplateFilePath = H:\APPS\VISUAL STUDIO 2013\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Medium" Text="Diagrams's Text Template Binding: 'ClassTemplate' will apply ClassTemplate.t4 to: 'Diagrams::controllers::MovableWorker' -  (Class), 'Diagrams::controllers::GameController' -  (Class), 'Diagrams::controllers::Worker' -  (Class), 'Diagrams::controllers::DockWorker' -  (Class), 'Diagrams::models::WareHouse' -  (Class), 'Diagrams::models::Cart' -  (Class), 'Diagrams::models::Movable' -  (Class), 'Diagrams::models::Track' -  (Class), 'Diagrams::models::Boat' -  (Class), 'Diagrams::models::SwitchTrack' -  (Class), 'Diagrams::models::HoldingTrack' -  (Class), 'Diagrams::models::MergeTrack' -  (Class), 'Diagrams::models::SplitTrack' -  (Class), 'Diagrams::models::SafeTrack' -  (Class), 'Diagrams::models:: Map' -  (Class) " />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Medium" Text="'Diagrams::controllers::MovableWorker' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\controllers\MovableWorker_TMovable.cs" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Medium" Text="'Diagrams::controllers::GameController' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\controllers\GameController.cs" />
+  <Message Timestamp="2016-10-26T00:45:35" Importance="Medium" Text="'Diagrams::controllers::Worker' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\controllers\Worker.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::controllers::DockWorker' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\controllers\DockWorker.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::WareHouse' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\WareHouse_TMovable.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::Cart' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\Cart.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::Movable' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\Movable.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::Track' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\Track.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::Boat' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\Boat.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::SwitchTrack' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\SwitchTrack.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::HoldingTrack' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\HoldingTrack.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::MergeTrack' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\MergeTrack.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::SplitTrack' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\SplitTrack.cs" />
+  <Message Timestamp="2016-10-26T00:45:36" Importance="Medium" Text="'Diagrams::models::SafeTrack' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\SafeTrack.cs" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Medium" Text="'Diagrams::models:: Map' -  (Class) : success (file replaced) - H:\Data\GitHub\mod-3-goudkoorts\DiagramsLib\GeneratedCode\models\ Map.cs" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="Name = StructTemplate" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="ProjectPath = ..\DiagramsLib\DiagramsLib.csproj" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="TemplateFilePath = H:\APPS\VISUAL STUDIO 2013\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="ResolvedTemplateFilePath = H:\APPS\VISUAL STUDIO 2013\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Medium" Text="Diagrams's Text Template Binding: 'StructTemplate' will apply StructTemplate.t4 to: 'Diagrams::controllers::MovableWorker' -  (Class), 'Diagrams::controllers::GameController' -  (Class), 'Diagrams::controllers::Worker' -  (Class), 'Diagrams::controllers::DockWorker' -  (Class), 'Diagrams::models::WareHouse' -  (Class), 'Diagrams::models::Cart' -  (Class), 'Diagrams::models::Movable' -  (Class), 'Diagrams::models::Track' -  (Class), 'Diagrams::models::Boat' -  (Class), 'Diagrams::models::SwitchTrack' -  (Class), 'Diagrams::models::HoldingTrack' -  (Class), 'Diagrams::models::MergeTrack' -  (Class), 'Diagrams::models::SplitTrack' -  (Class), 'Diagrams::models::SafeTrack' -  (Class), 'Diagrams::models:: Map' -  (Class) " />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::MovableWorker' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::GameController' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::Worker' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::DockWorker' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::WareHouse' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::Cart' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::Movable' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::Track' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::Boat' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::SwitchTrack' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::HoldingTrack' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::MergeTrack' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::SplitTrack' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::SafeTrack' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models:: Map' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="The selection included 25 elements which were not bound to a template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers' -  (Package): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'09e1deff-d779-4fc3-bf27-132a48764d84' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'97c9d3ca-ef1a-4429-a183-177c504a5892' -  (PackageImport): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models' -  (Package): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'1ae3b8a5-643c-405c-a373-32f44dbcf0de' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'07f0d3e8-1390-4e57-9308-de72f8d0049b' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'089448c6-34be-44e9-9313-76f174087ee7' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'c90ccac4-d570-42fb-84a6-ac5736a0dc2d' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'ce9c6d11-8fb7-43b2-b7bc-cd2b692280bb' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'a7e488c6-7b1a-4ad9-9b57-41e9270b311e' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'7c09331c-fc1e-48ed-baab-e674435f08a6' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'c34d2c79-7531-4271-bda7-a0b14363b5af' -  (Generalization): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::models::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="Diagnostic" Text="'Diagrams::controllers::' -  (Association): no bound template." />
+  <Message Timestamp="2016-10-26T00:45:37" Importance="High" Text="Code generation complete. Errors: 0. Warnings: 0." />
+</Log>

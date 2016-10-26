@@ -10,6 +10,9 @@ namespace mod_3_goudkoorts
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.Write("🛒");
+            Console.Read();
         }
     }
 }
