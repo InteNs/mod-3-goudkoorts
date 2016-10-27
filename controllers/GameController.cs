@@ -20,7 +20,7 @@ namespace controllers
             Score = 0;
             Ticks = 0;
             InitializeWorkers();
-            
+            new Thread(Refresh).Start();
             Play();
         }
 		public int Score { get; set; }
@@ -33,14 +33,8 @@ namespace controllers
 
         public Map Map { get; set; }
 
-	    public static int LoopsPerTick = 6;
-	    private int _count = 0;
-
 	    public virtual bool DoTick()
 	    {
-	        _count++;
-	        if (_count%LoopsPerTick != 0) return true;
-
 	        foreach (var worker in Workers)
 	        {
 	            worker.Work(Ticks);
@@ -55,10 +49,18 @@ namespace controllers
 	    {
 	        while (DoTick())
 	        { 
+                Thread.Sleep(1000);
+	        }
+            
+	    }
+
+	    public void Refresh()
+	    {
+            while (true)
+            {
                 CheckInput();
                 View.DrawTick(Ticks, Score);
-                Thread.Sleep(300);
-	        }
+            }
 	    }
 
 	    private void CheckInput()

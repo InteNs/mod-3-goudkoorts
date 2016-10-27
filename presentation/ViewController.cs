@@ -14,12 +14,14 @@ namespace presentation
         public OutputView View { get; set; }
 
         private string _fieldString;
+        private long _ticks;
 
         public ViewController()
         {
+            Console.SetWindowSize(38, 19);
+            Console.CursorVisible = false;
             Console.OutputEncoding = Encoding.Unicode;
             View = new OutputView();
-            View.DrawWelcome();
         }
 
         public string GettCharAt(int y, int x)
@@ -32,7 +34,8 @@ namespace presentation
 
         public void DrawTick(long ticks, int score)
         {
-            View.ClearScreen();
+            _ticks = ticks;
+            View.DrawInfo();
             View.DrawState(ticks, score);
             View.DrawMap(Objects.GetLength(0), Objects.GetLength(1), this);
         }
@@ -41,25 +44,30 @@ namespace presentation
 
         public void Visit(Track visitee)
         {
-            if (visitee.Next is MergeTrack)
+            _fieldString = visitee.Orientation == 'V' ? " ║ " : "═══";
+            if (visitee.Previous == null || visitee.Next == null) return;
+
+            var next = visitee.Next;
+            var previous = visitee.Previous;
+
+            if (visitee.Orientation == 'V' && (next.Orientation == 'H' || previous.Orientation == 'H'))
             {
-                _fieldString = ((SwitchTrack)visitee.Next).UpTrack == visitee ? "═╗ " : "═╝ ";
-            } else if (visitee.Previous is SplitTrack)
-            {
-                _fieldString = ((SwitchTrack) visitee.Previous).UpTrack == visitee ? " ╔═" : " ╚═";
+                _fieldString = "═╣ ";
+                return;
             }
-            else
+
+            if (next is MergeTrack)
             {
-                if (visitee.Previous != null && visitee.Next != null)
-                {
-                    if (visitee.Orientation == 'V' && (visitee.Previous.Orientation == 'H' || visitee.Next.Orientation == 'H'))
-                    {
-                        _fieldString = "═╣ "; return;
-                    }
-                }
-                _fieldString = visitee.Orientation == 'V' ? " ║ " : "═══";
+                _fieldString = ((SwitchTrack) next).UpTrack == visitee ? "═╗ " : "═╝ ";
+                return;
+            }
+
+            if (previous is SplitTrack)
+            {
+                _fieldString = ((SwitchTrack) previous).UpTrack == visitee ? " ╔═" : " ╚═";
             }
         }
+
 
         public void Visit(HoldingTrack visitee)
         {
@@ -85,7 +93,7 @@ namespace presentation
 
         public void Visit(SeaTrack visitee)
         {
-            _fieldString = "~≈~";
+            _fieldString = _ticks%2 == 0 ? "≈~≈" : "~─~";
         }
 
         public void Visit(WareHouse<Boat> visitee)
