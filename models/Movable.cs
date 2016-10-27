@@ -1,6 +1,6 @@
 ﻿namespace models
 {
-    public abstract class Movable
+    public abstract class Movable : IVisitable
     {
         private Track _track;
 
@@ -27,20 +27,24 @@
             get { return IsCompleted && Track == null; }
         }
 
-        private bool CanMove
-        {
-            get{ return Track.Next == null || Track.CanLeave() && Track.Next.CanEnter(this); }
-        }
-
         public bool Move()
         {
-            if (!CanMove) return true;
-            if (Track.Next.IsOccupied) return false;
+            //this cart is out of the map -> SKIP
+            if (Track == null) return true;
+            //this cart can't leave -> SKIP
+            if (!Track.CanLeave()) return true;
+            //this cart can't enter the next track -> SKIP
+            if (Track.Next != null && !Track.Next.CanEnter(this)) return true;
+            //this cart has a collision -> ABORT
+            if (Track.Next != null && Track.Next.IsOccupied) return false;
 
+            //move
             Track.Movable = null;
             Track = Track.Next;
             return true;
         }
+
+        public abstract void Accept(IVisitor visitor);
     }
 }
 

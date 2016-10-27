@@ -12,9 +12,14 @@
             get { return Cargo >= 16; }
         }
 
+        public override void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+
         public override int PointsIfComplete
         {
-            get { return 18; }
+            get { return 10; }
         }
     }
 }

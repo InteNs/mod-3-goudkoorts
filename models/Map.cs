@@ -1,5 +1,7 @@
 using System;
+using System.CodeDom;
 using System.Dynamic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -13,38 +15,27 @@ namespace models
     {
         public Map()
         {
+            Switches = new List<SwitchTrack>(5);
+            BoatStarts = new List<WareHouse<Boat>>(1);
+            CartStarts = new List<WareHouse<Cart>>(3);
+            LocationMap = new IVisitable[9,12];
             Generate();
         }
-        public object[,] LocationMap { get; set; }
+        public IVisitable[,] LocationMap { get; set; }
 
-        public virtual Track DockTrackIn
-        {
-            get;
-            set;
-        }
+        public virtual Track DockTrackIn { get; set; }
 
-        public virtual Track DocktrackOut
-        {
-            get;
-            set;
-        }
+        public Track DocktrackOut { get; set; }
 
-        public virtual List<WareHouse<Cart>> CartStarts
-        {
-            get;
-            set;
-        }
+        public List<WareHouse<Cart>> CartStarts { get; set; }
 
-        public virtual List<WareHouse<Boat>> BoatStarts
-        {
-            get;
-            set;
-        }
+        public List<WareHouse<Boat>> BoatStarts { get; set; }
 
-        public virtual List<SwitchTrack> Switches
+        public List<SwitchTrack> Switches { get; set; }
+
+        public SwitchTrack Switch(int number)
         {
-            get;
-            set;
+            return Switches.FirstOrDefault(s => s.Number == number);
         }
 
         /*******************GENERATION***************/
@@ -63,98 +54,102 @@ namespace models
 
         private void InitStarts()
         {
-            BoatStarts[0] = BuildWareHouse<Boat>(0, 0);
-
-            CartStarts[0] = BuildWareHouse<Cart>(3, 0);
-            CartStarts[1] = BuildWareHouse<Cart>(5, 0);
-            CartStarts[2] = BuildWareHouse<Cart>(7, 0);
+            BoatStarts.Add(BuildWareHouse<Boat>(0, 0));
+            
+            CartStarts.Add(BuildWareHouse<Cart>(3, 0));
+            CartStarts.Add(BuildWareHouse<Cart>(5, 0));
+            CartStarts.Add(BuildWareHouse<Cart>(7, 0));
         }
 
         private void InitSwitches()
         {
-            Switches[1] = new MergeTrack { Number = 1 };
-            Locate(4, 3, Switches[0]);
-            Switches[2] = new SplitTrack { Number = 2 };
-            Locate(4, 5, Switches[1]);
-            Switches[3] = new MergeTrack { Number = 3 };
-            Locate(4, 9, Switches[0]);
-            Switches[4] = new MergeTrack { Number = 4 };
-            Locate(6, 6, Switches[0]);
-            Switches[5] = new SplitTrack { Number = 5 };
-            Locate(6, 8, Switches[0]);
+            Switches.Add(BuildSwitch<MergeTrack>(4, 3, 1, true));
+            Switches.Add(BuildSwitch<SplitTrack>(4, 5, 2, true));
+            Switches.Add(BuildSwitch<MergeTrack>(4, 9, 3, true));
+            Switches.Add(BuildSwitch<MergeTrack>(6, 6, 4, false));
+            Switches.Add(BuildSwitch<SplitTrack>(6, 8, 5, false));
         }
 
         private void InitTrackLists()
         {
             /*******************_dockTracks**/
-            //9 normal tiles
-            var dockPointer = BuildTrackList(1, 0, 9, 'E');
-            //holding tile
-            dockPointer = BuildTrack<HoldingTrack>(1, 9, dockPointer);
-            DockTrackIn = dockPointer;
-            //2 normal tiles
-            dockPointer = BuildTrackList(1, 10, 2, 'E', dockPointer);
-            //3 normal tiles
-            dockPointer = BuildTrackList(4, 11, 3, 'N', dockPointer);
-            //one normal tile
-            _dockTracks = BuildTrack<Track>(4, 10, dockPointer);
+            Track last;
+            //1 normal tracks
+            _dockTracks = BuildTrackList<Track>(4, 10, 1, 'E', out last);
+            //4 normal tracks
+            last.Next = BuildTrackList<Track>(4, 11, 4, 'N', out last);
+            //1 normal tracks
+            last.Next = BuildTrackList<Track>(1, 10, 1, 'W', out last);
+            //1 holding tracks
+            last = BuildTrack<HoldingTrack>(1, 9, previous: last);
+            DockTrackIn = last;
+            //9 normal tracks
+            last.Next = BuildTrackList<Track>(1, 8, 9, 'W', out last);
 
             /*******************_safeTracks**/
-            //8 safe tiles
-            var safePointer = BuildTrackList(8, 1, 8, 'E');
-            //3 normal tiles
-            safePointer = BuildTrackList(8, 9, 3, 'E', safePointer);
-            //4 normal tiles
-            _safeTracks = BuildTrackList(7, 11, 4, 'W', safePointer);
+            //3 normal tracks
+            _safeTracks = BuildTrackList<Track>(7, 8, 3, 'E', out last);
+            //2 normal tracks
+            last.Next = BuildTrackList<Track>(7, 11, 2, 'S', out last);
+            //2 normal tracks
+            last.Next = BuildTrackList<Track>(8, 10, 2, 'W', out last);
+            //8 safe tracks
+            last.Next = BuildTrackList<SafeTrack>(8, 8, 8, 'W', out last);
 
             /*******************_seaTracks**/
-            //2 normal tiles
-            var seaPointer = BuildTrackList(0, 11, 2, 'W');
-            //holding tile
-            seaPointer = BuildTrack<HoldingTrack>(0, 9, seaPointer);
-            DocktrackOut = seaPointer;
-            //8 normal tiles
-            _seaTracks = BuildTrackList(0, 8, 8, 'W', seaPointer);
-
-            /*******************_bTo1**/
-
+            //8 normal tracks
+            _seaTracks = BuildTrackList<SeaTrack>(0, 1, 8, 'E', out last);
+            //1 holding track
+            last = BuildTrack<HoldingTrack>(0, 9, previous: last);
+            DocktrackOut = last;
+            //2 normal tracks
+            last.Next = BuildTrackList<SeaTrack>(0, 10, 2, 'E', out last);
         }
 
         private void MapTracks()
         {
             BoatStarts[0].Track = _seaTracks;
 
-            Switches[5].DownTrack = _safeTracks;
-            Switches[3].Next = _dockTracks;
+            Switch(5).DownTrack = _safeTracks;
+            Switch(3).Next = _dockTracks;
 
             Track last;
             //B -> 1
-            CartStarts[0].Track = BuildTrackList(3, 1, 3, 'E', out last, Switches[1]);
-            Switches[1].UpTrack = last;
+            CartStarts[0].Track = BuildTrackList<Track>(3, 1, 3, 'E', out last);
+            last.Next = Switch(1);
+            Switch(1).UpTrack = last;
+
             //C -> 1
-            CartStarts[1].Track = BuildTrackList(5, 1, 3, 'E', out last, Switches[1]);
-            Switches[1].DownTrack = last;
+            CartStarts[1].Track = BuildTrackList<Track>(5, 1, 3, 'E', out last);
+            last.Next = Switch(1);
+            Switch(1).DownTrack = last;
             //D -> 4
-            CartStarts[2].Track = BuildTrackList(7, 1, 6, 'E', out last, Switches[4]);
-            Switches[4].DownTrack = last;
+            CartStarts[2].Track = BuildTrackList<Track>(7, 1, 6, 'E', out last);
+            last.Next = Switch(4);
+            Switch(4).DownTrack = last;
             //2 -> 4
-            Switches[2].DownTrack = BuildTrackList(5, 5, 2, 'E', out last, Switches[4]);
-            Switches[4].UpTrack = last;
+            Switch(2).DownTrack = BuildTrackList<Track>(5, 5, 2, 'E', out last);
+            last.Next = Switch(4);
+            Switch(4).UpTrack = last;
             //2 -> 5
-            Switches[2].UpTrack = BuildTrackList(3, 5, 5, 'E', out last, Switches[3]);
-            Switches[3].UpTrack = last;
+            Switch(2).UpTrack = BuildTrackList<Track>(3, 5, 5, 'E', out last);
+            last.Next = Switch(3);
+            Switch(3).UpTrack = last;
             //5 -> 3
-            Switches[5].UpTrack = BuildTrackList(5, 8, 2, 'E', out last, Switches[3]);
-            Switches[3].DownTrack = last;
+            Switch(5).UpTrack = BuildTrackList<Track>(5, 8, 2, 'E', out last);
+            last.Next = Switch(3);
+            Switch(3).DownTrack = last;
+
             //1 -> 2
-            Switches[1].Next = BuildTrack<Track>(4, 4, Switches[2]);
+            Switch(1).Next = BuildTrack<Track>(4, 4, Switch(2));
+            
             //4 -> 5
-            Switches[4].Next = BuildTrack<Track>(6, 7, Switches[5]);
+            Switch(4).Next = BuildTrack<Track>(6, 7, Switch(5));
         }
 
         /*************HELPER METHODS FOR GENERATION*************/
 
-        private void Locate(int y, int x, object value)
+        private void Locate(int y, int x, IVisitable value)
         {
             LocationMap[y, x] = value;
         }
@@ -173,25 +168,28 @@ namespace models
                     break;
             }
         }
-        private Track BuildTrackList(int y, int x, int amount, char dir, Track attachTo = null)
+
+        private char OrientationForDir(char dir)
         {
-            Track dummy;
-            return BuildTrackList(y,x, amount, dir, out dummy, attachTo);
+            if (dir == 'N' || dir == 'S') return 'V';
+            if (dir == 'E' || dir == 'W') return 'H';
+            return ' ';
         }
 
-
-        private Track BuildTrackList(int y, int x, int amount, char dir, out Track last, Track attachTo = null)
+        private T BuildTrackList<T>(int y, int x, int amount, char dir, out Track last) where T : Track, new()
         {
-            var first = BuildTrack<Track>(y, x);
-
+            var first = BuildTrack<T>(y, x);
+            first.Orientation = OrientationForDir(dir);
             var currentTrack = first;
             for (var i = 1; i < amount; i++)
             {
                 IncrementCoord(ref y, ref x, dir);
-                currentTrack = BuildTrack<Track>(y, x, currentTrack);
+                var newTrack = BuildTrack<T>(y, x);
+                newTrack.Orientation = OrientationForDir(dir);
+                currentTrack.Next = newTrack;
+                currentTrack = newTrack;
             }
             last = currentTrack;
-            last.Next = attachTo;
             return first;
         }
 
@@ -201,9 +199,17 @@ namespace models
             Locate(y, x, piece);
             return piece;
         }
-        private T BuildTrack<T>(int y, int x, Track attachTo = default(T)) where T : Track, new()
+        private T BuildTrack<T>(int y, int x, Track next = default(T), Track previous = null) where T : Track, new()
         {
-            var piece = new T { Next = attachTo };
+            var piece = new T { Next = next };
+            if (previous != null) previous.Next = piece;
+            Locate(y, x, piece);
+            return piece;
+        }
+
+        private T BuildSwitch<T>(int y, int x, int number, bool isUp) where T : SwitchTrack, new()
+        {
+            var piece = new T { Number = number, SwitchIsUp = isUp};
             Locate(y, x, piece);
             return piece;
         }

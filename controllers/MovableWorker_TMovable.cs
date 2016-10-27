@@ -9,28 +9,46 @@ namespace controllers
 	public class MovableWorker<TMovable> : Worker
 		where TMovable : Movable, new()
 	{
+	    public MovableWorker()
+	    {
+	        TicksSinceLastSpawn = 0;
+	        Successfull = true;
+	        BaseInterval = 20;
+            Movables = new List<Movable>();
+	    }
 	    private int TicksSinceLastSpawn { get; set; }
         private int BaseInterval { get; set; }
 
 	    public Func<long, bool> SpawnAlgorithm;
-		public virtual List<WareHouse<TMovable>> WareHouses { get; set; }
+		public List<WareHouse<TMovable>> WareHouses { get; set; }
 
-	    public virtual List<Movable> Movables { get; set; }
+	    public List<Movable> Movables { get; set; }
 
 	    public bool TimeLinear(long ticks)
 	    {
-	        var interval = BaseInterval - ticks/50;
+	        var interval = BaseInterval-15 - ticks/50;
 	        return TicksSinceLastSpawn >= interval;
 	    }
 
-	    public bool WhenAllCompleted(long ticks)
+	    public bool Static(long ticks)
 	    {
-	        return Movables.TrueForAll(m => m.IsCompleted);
+	        return ticks%5 == 0;
+	    }
+
+	    public bool BasedOnCargo(long ticks)
+	    {
+            
+	        return Movables.TrueForAll(m => m.Cargo == 8);
 	    }
 
 	    private bool CanSpawnThisTick(long ticks)
 	    {
 	        return SpawnAlgorithm(ticks);
+	    }
+
+	    private int NextSpawn()
+	    {
+	        return new Random().Next(0, WareHouses.Count);
 	    }
 
 		public override void Work(long tickCount)
@@ -45,14 +63,14 @@ namespace controllers
             //move all movables
             foreach (var movable in Movables)
             {
-                if (!movable.Move()) Successfull = false;
+                var result = movable.Move();
+                if (result == false) Successfull = false;
             }
 
             //add new movables
 		    if ( CanSpawnThisTick(tickCount))
 		    {
-		        var nextIndex = new Random().Next(0, WareHouses.Count);
-		        WareHouses[nextIndex].SpawnMovable();
+		        Movables.Add(WareHouses[NextSpawn()].SpawnMovable());
 		        TicksSinceLastSpawn = 0;
 		    }
 		    else

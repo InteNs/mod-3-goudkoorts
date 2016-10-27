@@ -7,5 +7,13 @@
             var connectedTrack = SwitchIsUp ? UpTrack : DownTrack;
             return movable.Track == connectedTrack;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            if (IsOccupied)
+                Movable.Accept(visitor);
+            else
+                visitor.Visit(this);
+        }
     }
 }

@@ -3,6 +3,7 @@
     public abstract class SwitchTrack : Track
     {
         public int Number { get; set; }
+
         public virtual Track UpTrack { get; set; }
 
         public virtual Track DownTrack { get; set; }
@@ -11,6 +12,7 @@
 
         public virtual void Flip()
         {
+            if(IsOccupied) return;
             SwitchIsUp = !SwitchIsUp;
         }
     }

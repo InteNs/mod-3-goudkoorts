@@ -6,6 +6,14 @@
         {
             return Movable.IsCompleted;
         }
+
+        public override void Accept(IVisitor visitor)
+        {
+            if (IsOccupied)
+                Movable.Accept(visitor);
+            else
+                visitor.Visit(this);
+        }
     }
 }
 

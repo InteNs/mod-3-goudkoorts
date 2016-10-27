@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using controllers;
 
 namespace mod_3_goudkoorts
 {
@@ -10,8 +11,7 @@ namespace mod_3_goudkoorts
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.UTF8;
-            Console.Write("🛒");
+            var controller = new GameController();
             Console.Read();
         }
     }

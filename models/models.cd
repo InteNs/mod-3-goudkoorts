@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="models.Boat">
+    <Position X="9.75" Y="7" Width="2.25" />
+    <InheritanceLine Type="models.Movable" FixedFromPoint="true">
+      <Path>
+        <Point X="11.375" Y="6.267" />
+        <Point X="11.375" Y="6.625" />
+        <Point X="10.875" Y="6.625" />
+        <Point X="10.875" Y="7" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAAAA=</HashCode>
+      <FileName>Boat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.Cart">
+    <Position X="12.25" Y="7" Width="2" />
+    <InheritanceLine Type="models.Movable" FixedFromPoint="true">
+      <Path>
+        <Point X="11.375" Y="6.267" />
+        <Point X="11.375" Y="6.625" />
+        <Point X="13.25" Y="6.625" />
+        <Point X="13.25" Y="7" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAAAA=</HashCode>
+      <FileName>Cart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.HoldingTrack">
+    <Position X="5.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HoldingTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.Map">
+    <Position X="12.25" Y="0.5" Width="4" />
+    <AssociationLine Name="DockTrackIn" Type="models.Track" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="3.188" />
+        <Point X="8.25" Y="3.188" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="DocktrackOut" Type="models.Track" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="2.812" />
+        <Point X="8.5" Y="2.812" />
+        <Point X="8.5" Y="2.812" />
+        <Point X="8.25" Y="2.812" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="CartStarts" Type="models.WareHouse&lt;TMovable&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="1.812" />
+        <Point X="4.75" Y="1.812" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BoatStarts" Type="models.WareHouse&lt;TMovable&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="12.25" Y="1.375" />
+        <Point X="4.75" Y="1.375" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Switches" Type="models.SwitchTrack" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.25" Y="0.875" />
+        <Point X="2.188" Y="0.875" />
+        <Point X="2.188" Y="3.75" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AhAABwAAAIAAAIGBAIRAQCAACAEAQAAAAAAAFEQAAAA=</HashCode>
+      <FileName>Map.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DockTrackIn" />
+      <Property Name="DocktrackOut" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="CartStarts" />
+      <Property Name="BoatStarts" />
+      <Property Name="Switches" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="models.MergeTrack">
+    <Position X="0.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MergeTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.Movable">
+    <Position X="9.5" Y="3.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAMAAAAAAAAAAAAAAAAAAABABAAABEAAAIAA=</HashCode>
+      <FileName>Movable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Track" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="models.SafeTrack">
+    <Position X="7" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SafeTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.SplitTrack">
+    <Position X="3.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SplitTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.SwitchTrack">
+    <Position X="1" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAEAEAIAAMAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SwitchTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="models.Track">
+    <Position X="5.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BoAAAAAQAQAAAgAAAAAAAgAAAUAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Track.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Movable" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="models.WareHouse&lt;TMovable&gt;">
+    <Position X="2.5" Y="1.25" Width="2.25" />
+    <AssociationLine Name="Track" Type="models.Track" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.125" Y="2.546" />
+        <Point X="4.125" Y="3.188" />
+        <Point X="5.25" Y="3.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAEAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WareHouse_TMovable.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Track" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

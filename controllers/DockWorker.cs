@@ -4,6 +4,10 @@
 
 	public class DockWorker : Worker
 	{
+	    public DockWorker()
+	    {
+	        Successfull = true;
+	    }
 		public virtual Track Input { get; set; }
 
 	    public virtual Track Output { get; set; }

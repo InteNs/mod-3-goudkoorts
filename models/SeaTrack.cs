@@ -1,10 +1,17 @@
-﻿namespace models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace models
 {
-    public class SafeTrack : Track
+    public class SeaTrack : SafeTrack
     {
         public override bool CanLeave()
         {
-            return Next != null && !Next.IsOccupied;
+            if (Next == null) return true;
+            return !Next.IsOccupied;
         }
 
         public override void Accept(IVisitor visitor)
@@ -16,4 +23,3 @@
         }
     }
 }
-
