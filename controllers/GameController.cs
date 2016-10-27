@@ -12,15 +12,11 @@ namespace controllers
 
 	public class GameController
 	{
+	    private Thread _refreshThread;
         public GameController()
         {
-            Map = new Map();
-            View = new ViewController{Objects = Map.LocationMap};
-            Workers = new List<Worker>();
-            Score = 0;
-            Ticks = 0;
-            InitializeWorkers();
-            new Thread(Refresh).Start();
+            InitializeGame();
+            _refreshThread = new Thread(Refresh);
             Play();
         }
 		public int Score { get; set; }
@@ -45,21 +41,25 @@ namespace controllers
 	        return true;
 	    }
 
-	    public void Play()
+	    private void Play()
 	    {
+            _refreshThread.Start();
 	        while (DoTick())
 	        { 
                 Thread.Sleep(1000);
 	        }
+            _refreshThread.Abort();
+            View.DrawEnd(Score);
             
 	    }
 
-	    public void Refresh()
+	    private void Refresh()
 	    {
             while (true)
             {
                 CheckInput();
                 View.DrawTick(Ticks, Score);
+                Thread.Sleep(2);
             }
 	    }
 
@@ -74,11 +74,23 @@ namespace controllers
 	            case '3': Map.Switch(3).Flip(); break;
 	            case '4': Map.Switch(4).Flip(); break;
 	            case '5': Map.Switch(5).Flip(); break;
+                case 'r': case 'R': InitializeGame(); break;
+                case 'x': case 'X': Environment.Exit(0); break;
 	            default : break;
 	        }
 	    }
 
-		public void InitializeWorkers()
+	    private void InitializeGame()
+	    {
+            Map = new Map();
+            View = new ViewController { Objects = Map.LocationMap };
+            Workers = new List<Worker>();
+            Score = 0;
+            Ticks = 0;
+            InitializeWorkers();
+        }
+
+		private void InitializeWorkers()
 		{
             Workers.Add(new DockWorker { Input = Map.DockTrackIn, Output = Map.DocktrackOut });
 

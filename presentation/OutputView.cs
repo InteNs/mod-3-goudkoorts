@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace presentation
 {
     public class OutputView
     {
+        public OutputView()
+        {
+            Console.SetWindowSize(38, 19);
+            Console.CursorVisible = false;
+            Console.OutputEncoding = Encoding.Unicode;
+        }
         public void DrawInfo()
         {
             Console.SetCursorPosition(0,0);
             Console.WriteLine("┌─────────┬──────────────────────────┐");
             Console.WriteLine("│GoldFever│        X : Quit          │");
-            Console.WriteLine("├─────────┘      1-5 : Flip Switch   │");
-            Console.WriteLine("│                                    │");
+            Console.WriteLine("├─────────┘        R : Reset         │");
+            Console.WriteLine("│                1-5 : Flip Switch   │");
             Console.WriteLine("├────────────────────────────────────┤");
         }
 
@@ -43,10 +50,10 @@ namespace presentation
             Console.WriteLine("└────────────────────────────────────┘");
         }
 
-        public void DrawEnd()
+        public void DrawEnd(int finalScore)
         {
-            Console.SetCursorPosition(0,3);
-            Console.WriteLine("│              GAME OVER             │");
+            Console.SetCursorPosition(0, 5);
+            Console.Write("│ GAME OVER, you scored {0} points", finalScore);
         }
     }
 }

@@ -18,9 +18,6 @@ namespace presentation
 
         public ViewController()
         {
-            Console.SetWindowSize(38, 19);
-            Console.CursorVisible = false;
-            Console.OutputEncoding = Encoding.Unicode;
             View = new OutputView();
         }
 
@@ -38,6 +35,11 @@ namespace presentation
             View.DrawInfo();
             View.DrawState(ticks, score);
             View.DrawMap(Objects.GetLength(0), Objects.GetLength(1), this);
+        }
+
+        public void DrawEnd(int finalScore)
+        {
+            View.DrawEnd(finalScore);
         }
 
         /*********guestroom*********/
@@ -71,7 +73,7 @@ namespace presentation
 
         public void Visit(HoldingTrack visitee)
         {
-            _fieldString = "╡░╞";
+            _fieldString = "╡█╞";
         }
 
         public void Visit(MergeTrack visitee)
@@ -98,35 +100,24 @@ namespace presentation
 
         public void Visit(WareHouse<Boat> visitee)
         {
-            _fieldString = "|B├";
+            _fieldString = "<├~";
         }
 
         public void Visit(WareHouse<Cart> visitee)
         {
-            _fieldString = "|C╞";
+            _fieldString = "<╞═";
         }
 
         public void Visit(Cart visitee)
         {
-            string cargoChar;
-            switch (visitee.Cargo)
-            {
-                case 1:
-                    cargoChar = "◙";
-                    break;
-                case 2:
-                    cargoChar = "■";
-                    break;
-                default:
-                    cargoChar = "–";
-                    break;
-            }
-            _fieldString = "◄" + cargoChar + "►";
+
+            var cargoChar = visitee.IsCompleted ? "–" : "▀";
+            _fieldString = "•" + cargoChar + "•";
         }
 
         public void Visit(Boat visitee)
         {
-            _fieldString = visitee.Cargo.ToString("D2") + "►";
+            _fieldString = "" + visitee.Cargo.ToString("D2") + ">";
         }
     }
 }

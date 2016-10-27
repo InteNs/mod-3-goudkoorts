@@ -37,8 +37,7 @@ namespace controllers
 
 	    public bool BasedOnCargo(long ticks)
 	    {
-            
-	        return Movables.TrueForAll(m => m.Cargo == 8);
+	        return Movables.TrueForAll(m => m.Cargo == 14);
 	    }
 
 	    private bool CanSpawnThisTick(long ticks)
