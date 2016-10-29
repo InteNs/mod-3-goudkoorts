@@ -18,27 +18,9 @@ namespace controllers
 	    }
 	    private int TicksSinceLastSpawn { get; set; }
         private int BaseInterval { get; set; }
-
 	    public Func<long, bool> SpawnAlgorithm;
-		public List<WareHouse<TMovable>> WareHouses { get; set; }
-
+		public List<Path<TMovable>> Paths { get; set; }
 	    public List<Movable> Movables { get; set; }
-
-	    public bool TimeLinear(long ticks)
-	    {
-	        var interval = BaseInterval-15 - ticks/50;
-	        return TicksSinceLastSpawn >= interval;
-	    }
-
-	    public bool Static(long ticks)
-	    {
-	        return ticks%5 == 0;
-	    }
-
-	    public bool BasedOnCargo(long ticks)
-	    {
-	        return Movables.TrueForAll(m => m.Cargo == 14);
-	    }
 
 	    private bool CanSpawnThisTick(long ticks)
 	    {
@@ -47,7 +29,7 @@ namespace controllers
 
 	    private int NextSpawn()
 	    {
-	        return new Random().Next(0, WareHouses.Count);
+	        return new Random().Next(0, Paths.Count);
 	    }
 
 		public override void Work(long tickCount)
@@ -55,7 +37,7 @@ namespace controllers
             //remove any completed and disappeared movables
 		    foreach (var movable in Movables.Where(m => m.CanDelete).ToList())
 		    {
-		        Result += movable.PointsIfComplete;
+		        if (movable.IsCompleted) Result += movable.Points;
 		        Movables.Remove(movable);
 		    }
 
@@ -69,7 +51,7 @@ namespace controllers
             //add new movables
 		    if ( CanSpawnThisTick(tickCount))
 		    {
-		        Movables.Add(WareHouses[NextSpawn()].SpawnMovable());
+		        Movables.Add(Paths[NextSpawn()].SpawnMovable());
 		        TicksSinceLastSpawn = 0;
 		    }
 		    else
@@ -77,6 +59,28 @@ namespace controllers
 		        TicksSinceLastSpawn++;
 		    }
 		}
+
+        /***********spawn algorithnms****/
+        public bool Static(long ticks)
+        {
+            return ticks % 5 == 0;
+        }
+
+        public bool AllCompleted(long ticks)
+        {
+            return Movables.TrueForAll(m => m.IsCompleted);
+        }
+
+        public bool EveryTick(long ticks)
+        {
+            return ticks % 2 == 0;
+        }
+
+        public bool TimeLinear(long ticks)
+        {
+            var interval = BaseInterval - 15 - ticks / 50;
+            return TicksSinceLastSpawn >= interval;
+        }
 	}
 }
 

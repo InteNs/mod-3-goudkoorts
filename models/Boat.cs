@@ -9,7 +9,7 @@
 
         public override bool IsCompleted
         {
-            get { return Cargo >= 16; }
+            get { return Cargo >= 8; }
         }
 
         public override void Accept(IVisitor visitor)
@@ -17,7 +17,7 @@
             visitor.Visit(this);
         }
 
-        public override int PointsIfComplete
+        public override int Points
         {
             get { return 10; }
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using models;
+﻿using models;
 
 namespace presentation
 {
@@ -21,7 +15,7 @@ namespace presentation
             View = new OutputView();
         }
 
-        public string GettCharAt(int y, int x)
+        public string Visualize(int y, int x)
         {
             var piece = Objects[y, x];
             if (piece == null) return "   ";
@@ -29,11 +23,11 @@ namespace presentation
             return _fieldString;
         }
 
-        public void DrawTick(long ticks, int score)
+        public void DrawTick(long ticks, int score, int countDown)
         {
             _ticks = ticks;
             View.DrawInfo();
-            View.DrawState(ticks, score);
+            View.DrawState(ticks, score, countDown);
             View.DrawMap(Objects.GetLength(0), Objects.GetLength(1), this);
         }
 
@@ -73,7 +67,7 @@ namespace presentation
 
         public void Visit(HoldingTrack visitee)
         {
-            _fieldString = "╡█╞";
+            _fieldString = "≈÷≈";
         }
 
         public void Visit(MergeTrack visitee)
@@ -93,31 +87,30 @@ namespace presentation
             _fieldString = "╧══";
         }
 
-        public void Visit(SeaTrack visitee)
+        public void Visit(NoCollisionTrack visitee)
         {
             _fieldString = _ticks%2 == 0 ? "≈~≈" : "~─~";
         }
 
-        public void Visit(WareHouse<Boat> visitee)
+        public void Visit(Path<Boat> visitee)
         {
-            _fieldString = "<├~";
+            _fieldString = ">├~";
         }
 
-        public void Visit(WareHouse<Cart> visitee)
+        public void Visit(Path<Cart> visitee)
         {
-            _fieldString = "<╞═";
+            _fieldString = ">╞═";
         }
 
         public void Visit(Cart visitee)
         {
-
-            var cargoChar = visitee.IsCompleted ? "–" : "▀";
+            var cargoChar = visitee.Cargo == 0 ? "–" : "▀";
             _fieldString = "•" + cargoChar + "•";
         }
 
         public void Visit(Boat visitee)
         {
-            _fieldString = "" + visitee.Cargo.ToString("D2") + ">";
+            _fieldString = "<" + visitee.Cargo + ">";
         }
     }
 }

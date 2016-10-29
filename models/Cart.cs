@@ -4,10 +4,10 @@
     {
         public Cart()
         {
-            Cargo = 2;
+            Cargo = 1;
         }
 
-        public override int PointsIfComplete
+        public override int Points
         {
             get { return 1; }
         }

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace presentation
 {
@@ -26,10 +21,10 @@ namespace presentation
             Console.WriteLine("├────────────────────────────────────┤");
         }
 
-        public void DrawState(long ticks, int score)
+        public void DrawState(long ticks, int score, int countDown)
         {
             Console.SetCursorPosition(0,5);
-            Console.WriteLine("│cycles: {0} | score: {1}", ticks, score);
+            Console.WriteLine("│score: {0}| Next: {1} ", score, countDown);
             Console.WriteLine("├────────────────────────────────────┤");
         }
 
@@ -42,7 +37,7 @@ namespace presentation
                 Console.Write("│");
                 for (var x = 0; x < width; x++)
                 {
-                    Console.Write(reference.GettCharAt(y, x));
+                    Console.Write(reference.Visualize(y, x));
                 }
                 Console.Write("│");
                 Console.Write("\n");

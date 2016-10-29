@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mod-3-goudkoorts", "mod-3-goudkoorts\mod-3-goudkoorts.csproj", "{08045C69-8F1B-4C82-8177-9E7A08B5411F}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Diagrams", "Diagrams\Diagrams.modelproj", "{1F2EDC80-EC37-4488-866E-6E27EDFAE2DB}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Design", "Diagrams\Design.modelproj", "{1F2EDC80-EC37-4488-866E-6E27EDFAE2DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "models", "models\models.csproj", "{B8F32193-A4B8-4E48-AAFD-8C456655B899}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "controllers", "controllers\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "presentation", "presentation\presentation.csproj", "{1AC6E21C-4B02-4B0C-8DBE-24DB815386A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiagramsLib", "DiagramsLib\DiagramsLib.csproj", "{58C5559F-E235-438A-8ED8-B0DDDE674F76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "diagrams", "diagrammen\diagrams.csproj", "{10A2744B-4FAE-42C2-A5FC-9A66BA7E9C1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{1AC6E21C-4B02-4B0C-8DBE-24DB815386A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AC6E21C-4B02-4B0C-8DBE-24DB815386A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AC6E21C-4B02-4B0C-8DBE-24DB815386A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58C5559F-E235-438A-8ED8-B0DDDE674F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58C5559F-E235-438A-8ED8-B0DDDE674F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58C5559F-E235-438A-8ED8-B0DDDE674F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58C5559F-E235-438A-8ED8-B0DDDE674F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A2744B-4FAE-42C2-A5FC-9A66BA7E9C1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A2744B-4FAE-42C2-A5FC-9A66BA7E9C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A2744B-4FAE-42C2-A5FC-9A66BA7E9C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A2744B-4FAE-42C2-A5FC-9A66BA7E9C1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

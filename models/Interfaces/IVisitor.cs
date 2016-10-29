@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace models
+﻿namespace models
 {
     public interface IVisitor
     {
@@ -13,9 +7,9 @@ namespace models
         void Visit(MergeTrack visitee);
         void Visit(SplitTrack visitee);
         void Visit(SafeTrack visitee);
-        void Visit(SeaTrack visitee);
-        void Visit(WareHouse<Boat> visitee);
-        void Visit(WareHouse<Cart> visitee);
+        void Visit(NoCollisionTrack visitee);
+        void Visit(Path<Boat> visitee);
+        void Visit(Path<Cart> visitee);
         void Visit(Cart visitee);
         void Visit(Boat visitee);
     }

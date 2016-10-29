@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace models
+﻿namespace models
 {
-    public class WareHouse<TMovable> : IVisitable
+    public class Path<TMovable> : IVisitable
         where TMovable : Movable, new()
     {
         public virtual Track Track { get; set; }

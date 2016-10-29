@@ -6,7 +6,7 @@
 
         public int Cargo { get; set; }
 
-        public virtual int PointsIfComplete { get { return 0; } }
+        public virtual int Points { get { return 0; } }
 
         public virtual bool IsCompleted
         {
@@ -24,7 +24,7 @@
 
         public bool CanDelete
         {
-            get { return IsCompleted && Track == null; }
+            get { return Track == null; }
         }
 
         public bool Move()

@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Data;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using presentation;
+using System.Collections.Generic;
+using models;
 
 namespace controllers
 {
-	using System.Collections.Generic;
-    using models;
-
 	public class GameController
 	{
 	    private Thread _refreshThread;
@@ -22,6 +18,10 @@ namespace controllers
 		public int Score { get; set; }
 
 	    public long Ticks { get; set; }
+
+        public int CountDown { get; set; }
+
+	    public int Speed { get; set; }
 
         public ViewController View { get; set; } 
 
@@ -46,11 +46,21 @@ namespace controllers
             _refreshThread.Start();
 	        while (DoTick())
 	        { 
-                Thread.Sleep(1000);
+                Wait();
 	        }
             _refreshThread.Abort();
             View.DrawEnd(Score);
             
+	    }
+
+	    private void Wait()
+	    {
+	        CountDown = Ticks%50 == 0 ? Speed-- : Speed;
+	        for (var i = CountDown - 1; i >= 0; i--)
+	        {
+	            CountDown--;
+                Thread.Sleep(100);
+	        }
 	    }
 
 	    private void Refresh()
@@ -58,7 +68,7 @@ namespace controllers
             while (true)
             {
                 CheckInput();
-                View.DrawTick(Ticks, Score);
+                View.DrawTick(Ticks, Score, CountDown);
                 Thread.Sleep(2);
             }
 	    }
@@ -86,6 +96,7 @@ namespace controllers
             View = new ViewController { Objects = Map.LocationMap };
             Workers = new List<Worker>();
             Score = 0;
+	        Speed = 20;
             Ticks = 0;
             InitializeWorkers();
         }
@@ -98,15 +109,15 @@ namespace controllers
             cartWorker.SpawnAlgorithm = cartWorker.TimeLinear;
 
             var boatWorker = HireMovableWorker(Map.BoatStarts);
-		    boatWorker.SpawnAlgorithm = boatWorker.BasedOnCargo;
+		    boatWorker.SpawnAlgorithm = boatWorker.AllCompleted;
 
             
 		}
 
-	    private MovableWorker<T> HireMovableWorker<T>(List<WareHouse<T>> wareHouses)
+	    private MovableWorker<T> HireMovableWorker<T>(List<Path<T>> wareHouses)
             where T : Movable, new()
 	    {
-	        var worker = new MovableWorker<T> {WareHouses = wareHouses};
+	        var worker = new MovableWorker<T> {Paths = wareHouses};
 	        Workers.Add(worker);
 	        return worker;
 	    }

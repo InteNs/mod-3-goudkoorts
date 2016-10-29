@@ -1,10 +1,4 @@
-using System;
-using System.CodeDom;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 
 namespace models
 {
@@ -16,8 +10,8 @@ namespace models
         public Map()
         {
             Switches = new List<SwitchTrack>(5);
-            BoatStarts = new List<WareHouse<Boat>>(1);
-            CartStarts = new List<WareHouse<Cart>>(3);
+            BoatStarts = new List<Path<Boat>>(1);
+            CartStarts = new List<Path<Cart>>(3);
             LocationMap = new IVisitable[9,12];
             Generate();
         }
@@ -27,9 +21,9 @@ namespace models
 
         public Track DocktrackOut { get; set; }
 
-        public List<WareHouse<Cart>> CartStarts { get; set; }
+        public List<Path<Cart>> CartStarts { get; set; }
 
-        public List<WareHouse<Boat>> BoatStarts { get; set; }
+        public List<Path<Boat>> BoatStarts { get; set; }
 
         public List<SwitchTrack> Switches { get; set; }
 
@@ -81,7 +75,7 @@ namespace models
             //1 normal tracks
             last.Next = BuildTrackList<Track>(1, 10, 1, 'W', out last);
             //1 holding tracks
-            last = BuildTrack<HoldingTrack>(1, 9, previous: last);
+            last = BuildTrack<Track>(1, 9, previous: last);
             DockTrackIn = last;
             //9 normal tracks
             last.Next = BuildTrackList<Track>(1, 8, 9, 'W', out last);
@@ -98,12 +92,12 @@ namespace models
 
             /*******************_seaTracks**/
             //8 normal tracks
-            _seaTracks = BuildTrackList<SeaTrack>(0, 1, 8, 'E', out last);
+            _seaTracks = BuildTrackList<NoCollisionTrack>(0, 1, 8, 'E', out last);
             //1 holding track
             last = BuildTrack<HoldingTrack>(0, 9, previous: last);
             DocktrackOut = last;
             //2 normal tracks
-            last.Next = BuildTrackList<SeaTrack>(0, 10, 2, 'E', out last);
+            last.Next = BuildTrackList<NoCollisionTrack>(0, 10, 2, 'E', out last);
         }
 
         private void MapTracks()
@@ -193,9 +187,9 @@ namespace models
             return first;
         }
 
-        private WareHouse<T> BuildWareHouse<T>(int y, int x) where T : Movable, new()
+        private Path<T> BuildWareHouse<T>(int y, int x) where T : Movable, new()
         {
-            var piece = new WareHouse<T>();
+            var piece = new Path<T>();
             Locate(y, x, piece);
             return piece;
         }

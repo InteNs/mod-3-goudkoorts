@@ -1,7 +1,7 @@
-﻿namespace controllers
-{
-	using models;
+﻿using models;
 
+namespace controllers
+{
 	public class DockWorker : Worker
 	{
 	    public DockWorker()
