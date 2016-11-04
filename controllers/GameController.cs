@@ -48,7 +48,6 @@ namespace controllers
 	        { 
                 Wait();
 	        }
-            _refreshThread.Abort();
             View.DrawEnd(Score);
             
 	    }

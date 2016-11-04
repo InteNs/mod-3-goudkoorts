@@ -7,9 +7,10 @@ namespace presentation
     {
         public OutputView()
         {
-            Console.SetWindowSize(38, 19);
+            //Console.SetWindowSize(38, 19);
+            Console.Clear();
             Console.CursorVisible = false;
-            Console.OutputEncoding = Encoding.Unicode;
+            
         }
         public void DrawInfo()
         {
